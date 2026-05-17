@@ -1,0 +1,41 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Testler (Vitest)",
+      "type": "npm",
+      "script": "test",
+      "path": ".",
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "shared" },
+      "group": { "kind": "test", "isDefault": true }
+    },
+    {
+      "label": "Testler (izleme modu)",
+      "type": "shell",
+      "command": "npx vitest",
+      "options": { "cwd": "${workspaceFolder}" },
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" },
+      "isBackground": true
+    },
+    {
+      "label": "Expo (Web önizleme)",
+      "type": "shell",
+      "command": "npx expo start --web",
+      "options": { "cwd": "${workspaceFolder}" },
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated", "focus": true },
+      "isBackground": true
+    },
+    {
+      "label": "Expo (telefon, tünel)",
+      "type": "shell",
+      "command": "npx expo start --tunnel",
+      "options": { "cwd": "${workspaceFolder}" },
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated", "focus": true },
+      "isBackground": true
+    }
+  ]
+}
