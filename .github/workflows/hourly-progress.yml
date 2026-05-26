@@ -1,0 +1,24 @@
+name: Hourly progress logger
+
+on:
+  schedule:
+    - cron: '0 * * * *' # every hour at minute 0 UTC
+  workflow_dispatch: {}
+
+jobs:
+  log:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feature/pdf-dwg-integration
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Append progress
+        run: |
+          echo "Hourly update: $(date -u) - Latest commit: $(git rev-parse --short HEAD)" >> PROGRESS.md
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add PROGRESS.md
+          git commit -m "chore(progress): hourly update $(date -u)" || echo "no changes to commit"
+          git push origin HEAD:feature/pdf-dwg-integration
